@@ -1,0 +1,278 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Atelier créatif - Arts appliqués">
+<title>Arts appliqués — Atelier créatif</title>
+<style>
+:root {
+  --ink:#252b29;
+  --paper:#fbf8f5;
+  --rose:#f1d2cb;
+  --sage:#9bb8ad;
+  --pink:#f20b83;
+  --sand:#d8bd87;
+  --muted:#68716d;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+.topline{height:7px;background:linear-gradient(90deg,var(--rose) 0 25%,var(--sage) 25% 50%,var(--pink) 50% 75%,var(--sand) 75%)}
+header{position:sticky;top:0;z-index:20;background:rgba(251,248,245,.94);backdrop-filter:blur(14px);border-bottom:1px solid #ddd}
+.nav{max-width:1180px;margin:auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:12px;font-family:Georgia,serif;font-size:20px;font-weight:bold}
+.monogram{width:42px;height:42px;border:1px solid;border-radius:50%;display:grid;place-items:center;font-size:18px}
+.links{display:flex;gap:24px;font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+.links a{color:var(--muted)}
+.links a:hover{color:var(--pink)}
+.menu-btn{display:none;border:1px solid #ddd;background:transparent;border-radius:30px;padding:8px 13px}
+.wrap{max-width:1180px;margin:auto;padding:0 24px}
+.hero{min-height:650px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:6%;padding-top:64px;padding-bottom:80px}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.22em;color:var(--pink);font-weight:bold}
+h1,h2,h3{font-family:Georgia,serif;font-weight:normal;line-height:1.08}
+h1{font-size:clamp(52px,7vw,92px);letter-spacing:-.055em;margin:20px 0}
+h1 em{color:#a17d70}
+.hero p{max-width:510px;color:var(--muted);font-size:16px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;justify-content:center;padding:13px 20px;border-radius:3px;border:1px solid var(--ink);font-size:11px;text-transform:uppercase;letter-spacing:.13em;transition:.2s}
+.btn.dark{background:var(--ink);color:white}
+.btn.dark:hover{background:var(--pink);border-color:var(--pink)}
+.btn.light:hover{background:var(--rose)}
+.hero-art{position:relative;min-height:480px}
+.art-card{position:absolute;inset:20px 30px 30px 35px;background:var(--rose);border-radius:48% 48% 4px 4px;overflow:hidden;box-shadow:0 18px 50px #0001}
+.art-card:before{content:"";position:absolute;width:65%;height:80%;left:18%;top:14%;border:1px solid #555;border-radius:50% 50% 5px 5px;transform:rotate(-9deg)}
+.art-card:after{content:"";position:absolute;width:55%;height:55%;left:24%;top:28%;background:var(--sage);border-radius:50%;mix-blend-mode:multiply;transform:rotate(28deg)}
+.sun{position:absolute;z-index:2;width:100px;height:100px;border-radius:50%;background:var(--pink);right:9%;top:9%}
+.art-word{position:absolute;z-index:3;bottom:10%;left:8%;font-family:Georgia,serif;font-size:clamp(48px,7vw,90px);line-height:.8;letter-spacing:-.08em}
+.art-note{position:absolute;z-index:4;right:0;bottom:5%;background:white;padding:13px 16px;box-shadow:0 18px 50px #0001;font-family:Georgia,serif;font-style:italic;transform:rotate(4deg)}
+.float-label{position:absolute;left:0;top:0;background:var(--sand);padding:12px 16px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;z-index:5}
+.section{padding:95px 0}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:38px}
+.section-head h2{font-size:clamp(38px,5vw,60px);margin:10px 0 0}
+.section-head p{max-width:390px;color:var(--muted);font-size:14px;margin:0}
+.intro{background:#f3e8e2}
+.intro-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:9%;align-items:start}
+.intro h2{font-size:clamp(42px,5vw,64px);margin:12px 0}
+.intro-copy{color:#59615d;font-size:15px}
+.pill-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.pill{border:1px solid #999;border-radius:40px;padding:8px 13px;font-size:10px;text-transform:uppercase;letter-spacing:.12em}
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.project{background:white;border:1px solid #ddd;transition:.25s}
+.project:hover{transform:translateY(-6px);box-shadow:0 18px 50px #0001}
+.project-visual{height:245px;position:relative;overflow:hidden;display:grid;place-items:center}
+.visual-one{background:#f3d4cc}
+.visual-two{background:#a9c2b7}
+.visual-three{background:#ead7ac}
+.shape{position:absolute;border:1px solid var(--ink);width:150px;height:185px;border-radius:50% 50% 4px 4px;transform:rotate(12deg)}
+.visual-one .shape:after{content:"";position:absolute;width:100px;height:100px;background:var(--pink);border-radius:50%;right:-30px;top:25px}
+.visual-two .shape{width:180px;height:140px;border-radius:50%;transform:rotate(-28deg);background:#ffffff30}
+.visual-two .shape:after{content:"";position:absolute;inset:25px;border:1px solid;border-radius:50%}
+.visual-three .shape{width:145px;height:145px;border-radius:0;transform:rotate(45deg);background:var(--rose)}
+.visual-three .shape:after{content:"";position:absolute;inset:20px;border:1px solid}
+.project-number{position:absolute;top:15px;left:17px;font-size:10px;letter-spacing:.14em}
+.project-info{padding:21px}
+.project-info small{color:var(--pink);text-transform:uppercase;letter-spacing:.16em;font-size:9px}
+.project-info h3{font-size:27px;margin:8px 0}
+.project-info p{font-size:13px;color:var(--muted);margin:0}
+.method{background:#252b29;color:#f9f4ef}
+.method .eyebrow{color:#f1a8c9}
+.method .section-head p{color:#c4cbc7}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid #ffffff40}
+.step{padding:25px 22px 10px 0;border-right:1px solid #ffffff30;margin-right:22px}
+.step:last-child{border:0;margin:0}
+.step b{font-family:Georgia,serif;font-size:38px;font-weight:normal;color:var(--rose)}
+.step h3{font-size:24px;margin:15px 0 8px}
+.step p{font-size:13px;color:#c4cbc7}
+.resources{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.resource{background:white;border:1px solid #ddd;padding:26px;display:flex;gap:18px;align-items:flex-start}
+.resource-icon{width:44px;height:44px;flex:0 0 44px;background:var(--sage);border-radius:50%;display:grid;place-items:center;font-family:Georgia,serif;font-size:20px}
+.resource:nth-child(2) .resource-icon{background:var(--rose)}
+.resource:nth-child(3) .resource-icon{background:#f7c2dc}
+.resource:nth-child(4) .resource-icon{background:var(--sand)}
+.resource h3{font-size:23px;margin:0 0 6px}
+.resource p{font-size:13px;color:var(--muted);margin:0}
+.contact{background:var(--rose);text-align:center;padding:90px 24px}
+.contact h2{font-size:clamp(42px,6vw,72px);margin:12px auto;max-width:720px}
+.contact p{color:#5e625e;max-width:500px;margin:0 auto 25px}
+footer{padding:24px;text-align:center;color:var(--muted);font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+@media(max-width:800px){
+.links{display:none;position:absolute;left:0;right:0;top:70px;background:var(--paper);padding:20px 24px 25px;border-bottom:1px solid #ddd;flex-direction:column}
+.links.open{display:flex}
+.menu-btn{display:block}
+.hero{grid-template-columns:1fr;padding-top:60px;gap:20px}
+.hero-art{min-height:390px}
+.intro-grid{grid-template-columns:1fr;gap:20px}
+.projects{grid-template-columns:1fr 1fr}
+.steps{grid-template-columns:1fr 1fr;row-gap:25px}
+.step:nth-child(2){border:0}
+}
+@media(max-width:540px){
+.wrap{padding:0 18px}
+.nav{padding:12px 18px}
+.brand{font-size:17px}
+.hero{min-height:0;padding-bottom:55px}
+h1{font-size:58px}
+.hero-art{min-height:330px}
+.art-card{inset:18px 15px 22px 20px}
+.sun{width:70px;height:70px}
+.section{padding:68px 0}
+.section-head{display:block}
+.section-head p{margin-top:15px}
+.projects,.resources{grid-template-columns:1fr}
+.project-visual{height:220px}
+.steps{grid-template-columns:1fr}
+.step{border-right:0;border-bottom:1px solid #ffffff30;padding-bottom:20px;margin:0}
+.step:last-child{border:0}
+.contact{padding:70px 20px}
+}
+</style>
+</head>
+<body>
+<div class="topline"></div>
+
+<header>
+<nav class="nav">
+<a class="brand" href="#accueil"><span class="monogram">A.</span><span>Atelier créatif</span></a>
+<button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">Menu ☰</button>
+<div class="links" id="navLinks">
+<a href="#approche">L'approche</a>
+<a href="#projets">Projets</a>
+<a href="#methode">Méthode</a>
+<a href="#ressources">Ressources</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+</header>
+
+<main>
+<section class="wrap hero" id="accueil">
+<div class="reveal">
+<div class="eyebrow">Observer · Imaginer · Créer</div>
+<h1>Le regard<br>fait <em>la différence.</em></h1>
+<p>Bienvenue dans l'univers des arts appliqués : un espace pour développer sa créativité, expérimenter, apprendre à regarder autrement et donner forme à ses idées.</p>
+<div class="actions">
+<a class="btn dark" href="#projets">Découvrir les projets</a>
+<a class="btn light" href="#approche">Explorer l'atelier</a>
+</div>
+</div>
+<div class="hero-art reveal" aria-label="Composition graphique abstraite">
+<div class="float-label">Carnet d'inspiration — 01</div>
+<div class="art-card"></div>
+<div class="sun"></div>
+<div class="art-word">Créer<br>autrement.</div>
+<div class="art-note">L'art de chercher</div>
+</div>
+</section>
+
+<section class="intro section" id="approche">
+<div class="wrap intro-grid">
+<div class="reveal">
+<div class="eyebrow">L'esprit de l'atelier</div>
+<h2>Apprendre à voir. Oser faire.</h2>
+</div>
+<div class="intro-copy reveal">
+<p>Les arts appliqués invitent à observer le monde qui nous entoure, à comprendre les formes, les couleurs, les matières et les usages. Chaque projet devient l'occasion de tester, de questionner et de construire une réponse personnelle.</p>
+<p>Il n'existe pas une seule bonne idée : le chemin compte autant que le résultat. On collecte des références, on dessine, on compose, on expérimente et on améliore son travail.</p>
+<div class="pill-row">
+<span class="pill">Culture visuelle</span>
+<span class="pill">Couleur & matière</span>
+<span class="pill">Composition</span>
+<span class="pill">Créativité</span>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section wrap" id="projets">
+<div class="section-head reveal">
+<div><div class="eyebrow">Carnet de création</div><h2>Explorer les idées.</h2></div>
+<p>Quelques pistes de travail pour découvrir différentes façons de créer. Les projets et visuels pourront être remplacés par les réalisations des élèves.</p>
+</div>
+<div class="projects">
+<article class="project reveal">
+<div class="project-visual visual-one"><span class="project-number">01 / COULEUR</span><div class="shape"></div></div>
+<div class="project-info"><small>Expérimenter</small><h3>La couleur en jeu</h3><p>Créer des harmonies, jouer avec les contrastes et observer les émotions produites par les couleurs.</p></div>
+</article>
+<article class="project reveal">
+<div class="project-visual visual-two"><span class="project-number">02 / FORME</span><div class="shape"></div></div>
+<div class="project-info"><small>Composer</small><h3>Formes & équilibre</h3><p>Organiser les éléments dans l'espace et trouver un équilibre entre rythme, vide et plein.</p></div>
+</article>
+<article class="project reveal">
+<div class="project-visual visual-three"><span class="project-number">03 / MATIÈRE</span><div class="shape"></div></div>
+<div class="project-info"><small>Observer</small><h3>Textures sensibles</h3><p>Découvrir les matières, leurs qualités visuelles et les possibilités qu'elles offrent.</p></div>
+</article>
+</div>
+</section>
+
+<section class="method section" id="methode">
+<div class="wrap">
+<div class="section-head reveal">
+<div><div class="eyebrow">De l'idée au projet</div><h2>Une démarche en mouvement.</h2></div>
+<p>Un projet se construit progressivement. Chaque étape permet de faire évoluer une première intuition vers une proposition réfléchie.</p>
+</div>
+<div class="steps">
+<div class="step reveal"><b>01</b><h3>Observer</h3><p>Regarder, analyser et repérer ce qui nous inspire dans notre environnement.</p></div>
+<div class="step reveal"><b>02</b><h3>Rechercher</h3><p>Réunir des références, faire des croquis et explorer plusieurs pistes.</p></div>
+<div class="step reveal"><b>03</b><h3>Expérimenter</h3><p>Tester les couleurs, les matières, les outils et les compositions.</p></div>
+<div class="step reveal"><b>04</b><h3>Réaliser</h3><p>Choisir une direction, développer son idée et présenter son intention.</p></div>
+</div>
+</div>
+</section>
+
+<section class="section wrap" id="ressources">
+<div class="section-head reveal">
+<div><div class="eyebrow">Boîte à outils</div><h2>Pour nourrir l'imagination.</h2></div>
+<p>Des repères pour accompagner les recherches et développer sa culture artistique.</p>
+</div>
+<div class="resources">
+<article class="resource reveal"><div class="resource-icon">✳</div><div><h3>Références visuelles</h3><p>Artistes, designers, affiches, objets et images pour enrichir son regard.</p></div></article>
+<article class="resource reveal"><div class="resource-icon">✎</div><div><h3>Carnet de recherches</h3><p>Un espace personnel pour garder ses idées, croquis, essais et découvertes.</p></div></article>
+<article class="resource reveal"><div class="resource-icon">◒</div><div><h3>Couleurs & matières</h3><p>Nuanciers, associations, textures et expérimentations plastiques.</p></div></article>
+<article class="resource reveal"><div class="resource-icon">▧</div><div><h3>Conseils pratiques</h3><p>Quelques méthodes pour organiser son travail et présenter une démarche claire.</p></div></article>
+</div>
+</section>
+
+<section class="contact" id="contact">
+<div class="eyebrow">À vous de jouer</div>
+<h2>Chaque idée mérite d'être explorée.</h2>
+<p>Regardez autour de vous, soyez curieux et faites confiance à votre créativité.</p>
+<a class="btn dark" href="#accueil">Retour en haut ↑</a>
+</section>
+</main>
+
+<footer>Atelier créatif · Arts appliqués · Un espace pour imaginer et expérimenter</footer>
+
+<script>
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+menuBtn.addEventListener('click', () => {
+  const opened = navLinks.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', opened);
+});
+
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {threshold:0.12});
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
